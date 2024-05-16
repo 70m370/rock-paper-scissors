@@ -5,10 +5,10 @@ body {
     min-height: 100vh;
 }
 
-/*UNDERLINE EVERYTHING*/
+/*UNDERLINE EVERYTHING*
 * {
     outline: 2px solid rgb(10, 8, 8);
-}
+}*/
 
 .MainContainer {
     display: flex;
@@ -23,6 +23,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.playersPlaying {
+    display: flex;
+    color: aliceblue;
+    font-weight: bold;
+    margin: 16px;
+    gap: 30px;
+}
+
+/*SCORE*/
+.scorecard {
+    width: 60%;
+    display: flex;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: larger;
+
+    align-items: center;
+    justify-content: space-around;
 }
 
 .answer-box {
@@ -45,4 +66,5 @@ body {
     height: 150px;
     width: 150px;
 
+    font-weight: bolder;
 }

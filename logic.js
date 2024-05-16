@@ -10,35 +10,109 @@ so we dont have a problem while loading the page
 const button = document.querySelector("button");
 const reply = document.querySelector("p");
 
+const GameInstruments = ["rock", "paper", "scissors"];
+
+let playerScore = 0;
+let cpuScore = 0;
+
+const playerPointsDIV = document.querySelector(".player");
+
+const cpuPointsDIV = document.querySelector(".cpu");
 //functions
+
+//random choice
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-  };
-  
+};
 
-//game logic
+//get user input
+function GetUserinput(){
 
-function ButtonAction(){
-    //receive input
-    const UserInp = prompt("ROCK PAPER OR SCISSORS ? ");
+    let UserInp = prompt("ROCK PAPER OR SCISSORS ? ");
 
-    //game logic
+    while(UserInp === null || UserInp.trim() === ""){
+        UserInp = prompt("ROCK PAPER OR SCISSORS ? ");
+    }
 
-    const GameInstruments = ["rock", "paper", "scissors"];
+    return UserInp;
+};
 
+//check user input
+function CheckUserinput(){
+
+    let UserInp = GetUserinput();
+    let ValidInput = false;
+
+    while(ValidInput === false){
+
+        for(i = 0; i < 3; i++){
+            if(UserInp.toLowerCase() == GameInstruments[i]){
+                ValidInput = true;
+            }
+        }
+
+        if(ValidInput === false){
+            UserInp = GetUserinput();
+        }
+
+    }
+
+    return UserInp;
+};
+
+
+function StartGame(){
+
+    //variables
+    const playerchoice = CheckUserinput();
     const Computerchoice = GameInstruments[getRandomInt(3)];
 
-    if(UserInp.toLowerCase() === "rock"){
-            console.log("we got a rock  ");
-        } else {
-            console.log("ain't no rock here");
-        }
-    
-    console.log(`\\n testing stuff: ${Computerchoice}`);    
-    //print answer
-    reply.textContent = `${UserInp}`;
+    //game logic
+    switch(playerchoice){
+
+        case Computerchoice:
+            //just to be sure
+            //console.log("TIE");
+            reply.textContent = "TIE";
+            break;
+
+        case "rock":
+            if(Computerchoice === "scissors"){
+                playerScore++;
+                reply.textContent = "YOU WON";
+            }else {
+                cpuScore++;
+                reply.textContent = "YOU LOST";
+            }
+            break;
+
+        case "paper":
+            if(Computerchoice === "rock"){
+                playerScore++;
+                reply.textContent = "YOU WON";
+            }else {
+                cpuScore++;
+                reply.textContent = "YOU LOST";
+            }
+            break;
+
+        case "scissors":
+            if(Computerchoice === "paper"){
+                playerScore++;
+                reply.textContent = "YOU WON";
+            }else {
+                cpuScore++;
+                reply.textContent = "YOU LOST";
+            }
+            break;
+    }
+
+   //scoreboard update and game result
+    playerPointsDIV.textContent = playerScore;
+    cpuPointsDIV.textContent = cpuScore;
+
 };
 
 
 //main
-button.addEventListener("click", ButtonAction);
+button.addEventListener("click", StartGame);
