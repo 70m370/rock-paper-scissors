@@ -43,19 +43,13 @@ function CheckUserinput(){
     let UserInp = GetUserinput();
     let ValidInput = false;
 
-    while(ValidInput === false){
-
+    do{
         for(i = 0; i < 3; i++){
             if(UserInp.toLowerCase() == GameInstruments[i]){
                 ValidInput = true;
             }
         }
-
-        if(ValidInput === false){
-            UserInp = GetUserinput();
-        }
-
-    }
+    }while(ValidInput === false);
 
     return UserInp;
 };
