@@ -7,17 +7,20 @@ so we dont have a problem while loading the page
 
 
 //global section
-const button = document.querySelector("button");
+
+//dom section
+const Rbutton = document.querySelector("#rock");
+const Pbutton = document.querySelector("#paper");
+const Sbutton = document.querySelector("#scissors");
 const reply = document.querySelector("p");
+const playerPointsDIV = document.querySelector(".player");
+const cpuPointsDIV = document.querySelector(".cpu");
 
+//game variables
 const GameInstruments = ["rock", "paper", "scissors"];
-
 let playerScore = 0;
 let cpuScore = 0;
 
-const playerPointsDIV = document.querySelector(".player");
-
-const cpuPointsDIV = document.querySelector(".cpu");
 //functions
 
 //random choice
@@ -25,69 +28,16 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 };
 
-//get user input
-function GetUserinput(){
-
-    let UserInp = prompt("ROCK PAPER OR SCISSORS ? ");
-
-    while(UserInp === null || UserInp.trim() === ""){
-        UserInp = prompt("ROCK PAPER OR SCISSORS ? ");
-    }
-
-    return UserInp;
-};
-
-//check user input
-function CheckUserinput(){
-
-    let UserInp = GetUserinput();
-    let ValidInput = false;
-
-    //need to change this is breaking with different inputs.
-    //infinity load with inputs that are not valid - like typing anything
-    //
-    // tested locally it worked
-
-    /* 
-    do{
-        for(i = 0; i < 3; i++){
-            if(UserInp.toLowerCase() == GameInstruments[i]){
-                ValidInput = true;
-            }
-        }
-    }while(ValidInput === false);*/
-
-    
-    while(ValidInput === false){
-
-        for(i = 0; i < 3; i++){
-            if(UserInp.toLowerCase() == GameInstruments[i]){
-                ValidInput = true;
-            }
-        }
-
-        if(ValidInput === false){
-            UserInp = GetUserinput();
-        }
-
-    }
-
-    return UserInp;
-};
-
-
-function StartGame(){
+function StartGame(playerchoice){
 
     //variables
-    const playerchoice = CheckUserinput();
     const Computerchoice = GameInstruments[getRandomInt(3)];
 
     //game logic
     switch(playerchoice){
 
         case Computerchoice:
-            //just to be sure
-            //console.log("TIE");
+   
             reply.textContent = "TIE";
             break;
 
@@ -128,6 +78,27 @@ function StartGame(){
 
 };
 
+//get user input
+function GetUserinput(){
+
+    let UserInp = "";
+
+    Rbutton.addEventListener("click", () => {
+        UserInp = "rock";
+        StartGame(UserInp);
+    });
+
+    Pbutton.addEventListener("click", () => {
+        UserInp = "paper";
+        StartGame(UserInp);
+    });
+
+    Sbutton.addEventListener("click", () => {
+        UserInp = "scissors";
+        StartGame(UserInp);
+    });
+
+};
 
 //main
-button.addEventListener("click", StartGame);
+GetUserinput();

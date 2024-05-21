@@ -9,20 +9,31 @@
 </head>
 
 <body>
-
+    <h1>Welcome to Rock, Paper and Scissors</h1>
+    <div>
+        <h1>Lets play</h1>
+    </div>
     <div class="MainContainer">
+
+        <div class="PlayerChoice">
+            <button id="rock"><img src="img/rock.png" alt="buttonpng" /></button>
+            <button id="paper"><img src="img/paper.png" alt="buttonpng" /></button>
+            <button id="scissors"><img src="img/scissors.png" alt="buttonpng" /></button>
+        </div>
 
         <div class="CenteredContainer">
             <div class="playersPlaying">
                 <strong>player</strong>
                 <strong>cpu</strong>
             </div>
+
+            <!--THIS WILL CHANGE AND BE MANIPULATED THROUGH DOM in a future version - 
+                will hide and display it-->
             <div class="scorecard">
                 <div class="player"></div>
                 <div class="cpu"></div>
             </div>
 
-            <button>PLAY</button>
             <div class="answer-box">
                 <div class="result-box">
                     <p></p>
