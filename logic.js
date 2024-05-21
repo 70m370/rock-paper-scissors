@@ -43,6 +43,11 @@ function CheckUserinput(){
     let UserInp = GetUserinput();
     let ValidInput = false;
 
+    //need to change this is breaking with different inputs.
+    //infinity load with inputs that are not valid - like typing anything
+    //
+    // tested locally it worked
+
     /* 
     do{
         for(i = 0; i < 3; i++){
